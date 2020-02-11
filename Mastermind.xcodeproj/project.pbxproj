@@ -642,7 +642,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BF85615547AF114392FE0E82 /* Pods-MastermindTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MastermindTests/Info.plist;
@@ -664,7 +664,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F74DB17ED45DCD79CB105E24 /* Pods-MastermindTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MastermindTests/Info.plist;
@@ -686,7 +686,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F7C3311C2A3E5E7F73956DE /* Pods-MastermindUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MastermindUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -706,7 +706,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B09CA6D02716CDFBD7E58818 /* Pods-MastermindUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MastermindUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -25,28 +25,40 @@ class MainVCTest: XCTestCase {
     func testCorrectGuessFeedback() {
         mainVC.numberCombo = ["1", "2", "3", "4"]
         mainVC.guessArray = ["1", "2", "3", "4"]
-        mainVC.compareAndGiveFeedback()
-        XCTAssertEqual(mainVC.feedbackLabel.text, "You win! You have guessed the correct number combination!")
+        let guess = Guess(guessArray: mainVC.guessArray)
+        mainVC.compareAndGiveFeedback(for: guess)
+        XCTAssertEqual(mainVC.feedbackLabel.text, Feedback.correct.rawValue)
     }
 
     func testCorrectLocationFeedback() {
         mainVC.numberCombo = ["1", "2", "3", "4"]
         mainVC.guessArray = ["1", "0", "0", "0"]
-        mainVC.compareAndGiveFeedback()
-        XCTAssertEqual(mainVC.feedbackLabel.text, "You guessed a correct number in a correct location.")
+        let guess = Guess(guessArray: mainVC.guessArray)
+        mainVC.compareAndGiveFeedback(for: guess)
+        XCTAssertEqual(mainVC.feedbackLabel.text, Feedback.correctLocation.rawValue)
+    }
+
+    func testCorrectLocationFeedback2() {
+        mainVC.numberCombo = ["1", "2", "3", "4"]
+        mainVC.guessArray = ["0", "1", "0", "4"]
+        let guess = Guess(guessArray: mainVC.guessArray)
+        mainVC.compareAndGiveFeedback(for: guess)
+        XCTAssertEqual(mainVC.feedbackLabel.text, Feedback.correctLocation.rawValue)
     }
 
     func testCorrectNumberFeedback() {
         mainVC.numberCombo = ["1", "2", "3", "4"]
         mainVC.guessArray = ["4", "0", "0", "0"]
-        mainVC.compareAndGiveFeedback()
-        XCTAssertEqual(mainVC.feedbackLabel.text, "You guessed at least one correct number.")
+        let guess = Guess(guessArray: mainVC.guessArray)
+        mainVC.compareAndGiveFeedback(for: guess)
+        XCTAssertEqual(mainVC.feedbackLabel.text, Feedback.correctNumber.rawValue)
     }
 
     func testIncorrectFeedback() {
         mainVC.numberCombo = ["1", "2", "3", "4"]
         mainVC.guessArray = ["0", "0", "0", "0"]
-        mainVC.compareAndGiveFeedback()
-        XCTAssertEqual(mainVC.feedbackLabel.text, "Your guess is incorrect.")
+        let guess = Guess(guessArray: mainVC.guessArray)
+        mainVC.compareAndGiveFeedback(for: guess)
+        XCTAssertEqual(mainVC.feedbackLabel.text, Feedback.incorrect.rawValue)
     }
 }

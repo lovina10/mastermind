@@ -9,6 +9,13 @@
 import UIKit
 import Alamofire
 
+enum Feedback: String {
+    case incorrect = "Your guess is incorrect. Try different numbers."
+    case correctNumber = "You guessed at least one correct number."
+    case correctLocation = "You guessed at least one correct number in a correct location."
+    case correct = "You win! You have guessed the correct combination!"
+}
+
 protocol MainVCDelegate: class {
     func mainVCDidSubmitGuess(_ mainVC: MainVC, guess: Guess)
     func mainVCDidRestartGame(_ mainVC: MainVC)
@@ -47,7 +54,7 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemYellow
-        configureButtons()
+        setUpButtons()
         textFields = [textField1, textField2, textField3, textField4]
         for textField in textFields {
             textField.borderStyle = .none
@@ -56,29 +63,30 @@ class MainVC: UIViewController {
             textField.clipsToBounds = true
             textField.delegate = self
         }
-        setupNewGame()
+        setUpNewGame()
     }
 
-    func compareAndGiveFeedback() {
-        guard guessArray.count == 4 && numberCombo.count == 4 else { return }
+    func compareAndGiveFeedback(for guess: Guess) {
+        guard numberCombo.count == 4 && guess.guessArray.count == 4 else { return }
+        let guessArray = guess.guessArray
         if guessArray[0] == numberCombo[0] && guessArray[1] == numberCombo[1] && guessArray[2] == numberCombo[2] && guessArray[3] == numberCombo[3] {
-            feedbackLabel.text = "You win! You have guessed the correct number combination!"
+            guess.feedback = Feedback.correct.rawValue
             resetGameButton.isHidden = false
             submitButton.isHidden = true
         } else if guessArray[0] == numberCombo[0] || guessArray[1] == numberCombo[1] || guessArray[2] == numberCombo[2] || guessArray[3] == numberCombo[3] {
-            feedbackLabel.text = "You guessed a correct number in a correct location."
+            guess.feedback = Feedback.correctLocation.rawValue
         } else {
             for number in guessArray {
                 if numberCombo.contains(number) {
-                    feedbackLabel.text = "You guessed at least one correct number."
+                    guess.feedback = Feedback.correctNumber.rawValue
                     return
                 }
             }
-            feedbackLabel.text = "Your guess is incorrect."
+            guess.feedback = Feedback.incorrect.rawValue
         }
     }
 
-    @objc private func setupNewGame() {
+    @objc private func setUpNewGame() {
         interactor.fetchNumbers { (response) in
             guard let response = response else { return }
             self.numberCombo = response
@@ -100,16 +108,15 @@ class MainVC: UIViewController {
         }
         guard guessArray.count == 4 && numberCombo.count == 4 else { return }
         let guess = Guess(guessArray: guessArray)
-        compareAndGiveFeedback()
-        if let feedback = feedbackLabel.text {
-            guess.feedback = feedback
-        }
+        compareAndGiveFeedback(for: guess)
+        feedbackLabel.text = guess.feedback
         delegate?.mainVCDidSubmitGuess(self, guess: guess)
-        updateRemainingGuesses()
+        updateRemainingGuessesCount()
         if remainingGuesses == 0 {
             presentGameOver()
         }
         guessArray = []
+        animateLabels()
     }
 
     @objc private func numberPressed(_ sender: UIButton) {
@@ -153,7 +160,7 @@ class MainVC: UIViewController {
         disableSubmitButton()
     }
 
-    private func updateRemainingGuesses() {
+    private func updateRemainingGuessesCount() {
         remainingGuesses -= 1
         guard remainingGuesses >= 0 else { return }
         guessesLabel.text = "Remaining Guesses: \(remainingGuesses)"
@@ -177,7 +184,7 @@ class MainVC: UIViewController {
             self.revealCode()
         }
         let restartAction = UIAlertAction(title: "Start Another Round", style: .default) { (action) in
-            self.setupNewGame()
+            self.setUpNewGame()
         }
         alert.addAction(reviewAction)
         alert.addAction(restartAction)
@@ -213,7 +220,7 @@ class MainVC: UIViewController {
         submitButton.backgroundColor = .systemGray2
     }
 
-    private func configureButtons() {
+    private func setUpButtons() {
         zeroButton.tag = 0
         oneButton.tag = 1
         twoButton.tag = 2
@@ -229,13 +236,24 @@ class MainVC: UIViewController {
         }
         backspaceButton.addTarget(self, action: #selector(backspacePressed), for: .touchUpInside)
         clearButton.addTarget(self, action: #selector(clearPressed), for: .touchUpInside)
-        resetGameButton.addTarget(self, action: #selector(setupNewGame), for: .touchUpInside)
+        resetGameButton.addTarget(self, action: #selector(setUpNewGame), for: .touchUpInside)
         submitButton.addTarget(self, action: #selector(submitPressed), for: .touchUpInside)
 
         clearButton.layer.cornerRadius = 8
         clearButton.contentEdgeInsets = UIEdgeInsets(top: 2, left: 8, bottom: 2, right: 8)
         submitButton.layer.cornerRadius = 10
         resetGameButton.layer.cornerRadius = 10
+    }
+
+    private func animateLabels() {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
+            self.guessesLabel.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            self.feedbackLabel.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }, completion: nil)
+        UIView.animate(withDuration: 0.25) {
+            self.guessesLabel.transform = CGAffineTransform.identity
+            self.feedbackLabel.transform = CGAffineTransform.identity
+        }
     }
 }
 

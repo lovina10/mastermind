@@ -17,11 +17,11 @@ class HistoryVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        label.text = "Current Game's Guess History:"
         view.backgroundColor = .systemYellow
         tableView.backgroundColor = .systemYellow
-        label.text = "Current Game's Guess History:"
-        tableView.dataSource = self
         tableView.register(UINib(nibName: "GuessHistoryCell", bundle: nil), forCellReuseIdentifier: "cell")
+        tableView.dataSource = self
         tableView.allowsSelection = false
     }
 

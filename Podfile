@@ -8,3 +8,12 @@ target 'Mastermind' do
   pod 'Alamofire', '~> 5.0.0-rc.3'
 
 end
+
+target 'MastermindTests' do
+    inherit! :search_paths
+    pod 'Alamofire', '~> 5.0.0-rc.3'
+end
+
+target 'MastermindUITests' do
+    pod 'Alamofire', '~> 5.0.0-rc.3'
+end

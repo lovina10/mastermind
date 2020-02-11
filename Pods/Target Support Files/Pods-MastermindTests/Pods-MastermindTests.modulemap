@@ -1,0 +1,6 @@
+module Pods_MastermindTests {
+  umbrella header "Pods-MastermindTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

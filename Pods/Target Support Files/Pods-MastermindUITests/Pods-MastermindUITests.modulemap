@@ -1,0 +1,6 @@
+module Pods_MastermindUITests {
+  umbrella header "Pods-MastermindUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

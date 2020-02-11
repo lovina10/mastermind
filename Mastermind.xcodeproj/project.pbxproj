@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E95A4AD621682A99076EDD1 /* libPods-MastermindUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E81A4CCC47DB66C4E27545A6 /* libPods-MastermindUITests.a */; };
 		5618275623EBE381001EACE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618275523EBE381001EACE8 /* AppDelegate.swift */; };
 		5618275823EBE381001EACE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618275723EBE381001EACE8 /* SceneDelegate.swift */; };
 		5618275B23EBE381001EACE8 /* Mastermind.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5618275923EBE381001EACE8 /* Mastermind.xcdatamodeld */; };
 		5618275F23EBE384001EACE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5618275E23EBE384001EACE8 /* Assets.xcassets */; };
 		5618276523EBE384001EACE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5618276323EBE384001EACE8 /* LaunchScreen.storyboard */; };
-		5618277023EBE385001EACE8 /* MastermindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618276F23EBE385001EACE8 /* MastermindTests.swift */; };
 		5618277B23EBE385001EACE8 /* MastermindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618277A23EBE385001EACE8 /* MastermindUITests.swift */; };
 		5618278A23EBF172001EACE8 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618278823EBF172001EACE8 /* MainVC.swift */; };
 		5618278B23EBF172001EACE8 /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5618278923EBF172001EACE8 /* MainVC.xib */; };
@@ -21,7 +21,9 @@
 		56416BBA23F0F6CC0039B3ED /* GuessHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56416BB823F0F6CC0039B3ED /* GuessHistoryCell.swift */; };
 		56416BBB23F0F6CC0039B3ED /* GuessHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56416BB923F0F6CC0039B3ED /* GuessHistoryCell.xib */; };
 		56416BBD23F115010039B3ED /* Guess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56416BBC23F115010039B3ED /* Guess.swift */; };
+		56416BC723F253640039B3ED /* MainVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56416BC623F253640039B3ED /* MainVCTest.swift */; };
 		56F9D7A123EDF8140049D420 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F9D7A023EDF8140049D420 /* Interactor.swift */; };
+		D5742EB43A2F3C2967859C6E /* libPods-MastermindTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10D443411DF60E82A66F5EB8 /* libPods-MastermindTests.a */; };
 		E7363A4B201CD5CA21C9C927 /* libPods-Mastermind.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B93055FA84D121BB75CAE59 /* libPods-Mastermind.a */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10D443411DF60E82A66F5EB8 /* libPods-MastermindTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MastermindTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B83010BF8A40F1D925088BC /* Pods-Mastermind.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mastermind.debug.xcconfig"; path = "Target Support Files/Pods-Mastermind/Pods-Mastermind.debug.xcconfig"; sourceTree = "<group>"; };
+		1F7C3311C2A3E5E7F73956DE /* Pods-MastermindUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MastermindUITests.debug.xcconfig"; path = "Target Support Files/Pods-MastermindUITests/Pods-MastermindUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3CB5312045ED4319AFB393C8 /* Pods-Mastermind.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mastermind.release.xcconfig"; path = "Target Support Files/Pods-Mastermind/Pods-Mastermind.release.xcconfig"; sourceTree = "<group>"; };
 		5618275223EBE381001EACE8 /* Mastermind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mastermind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5618275523EBE381001EACE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,7 +57,6 @@
 		5618276423EBE384001EACE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5618276623EBE384001EACE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5618276B23EBE385001EACE8 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5618276F23EBE385001EACE8 /* MastermindTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindTests.swift; sourceTree = "<group>"; };
 		5618277123EBE385001EACE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5618277623EBE385001EACE8 /* MastermindUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5618277A23EBE385001EACE8 /* MastermindUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindUITests.swift; sourceTree = "<group>"; };
@@ -66,8 +69,13 @@
 		56416BB923F0F6CC0039B3ED /* GuessHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuessHistoryCell.xib; sourceTree = "<group>"; };
 		56416BBC23F115010039B3ED /* Guess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guess.swift; sourceTree = "<group>"; };
 		56416BC023F20B030039B3ED /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56416BC623F253640039B3ED /* MainVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCTest.swift; sourceTree = "<group>"; };
 		56F9D7A023EDF8140049D420 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		9B93055FA84D121BB75CAE59 /* libPods-Mastermind.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Mastermind.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B09CA6D02716CDFBD7E58818 /* Pods-MastermindUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MastermindUITests.release.xcconfig"; path = "Target Support Files/Pods-MastermindUITests/Pods-MastermindUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BF85615547AF114392FE0E82 /* Pods-MastermindTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MastermindTests.debug.xcconfig"; path = "Target Support Files/Pods-MastermindTests/Pods-MastermindTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E81A4CCC47DB66C4E27545A6 /* libPods-MastermindUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MastermindUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F74DB17ED45DCD79CB105E24 /* Pods-MastermindTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MastermindTests.release.xcconfig"; path = "Target Support Files/Pods-MastermindTests/Pods-MastermindTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5742EB43A2F3C2967859C6E /* libPods-MastermindTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E95A4AD621682A99076EDD1 /* libPods-MastermindUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +148,7 @@
 		5618276E23EBE385001EACE8 /* MastermindTests */ = {
 			isa = PBXGroup;
 			children = (
-				5618276F23EBE385001EACE8 /* MastermindTests.swift */,
+				56416BC623F253640039B3ED /* MainVCTest.swift */,
 				5618277123EBE385001EACE8 /* Info.plist */,
 			);
 			path = MastermindTests;
@@ -194,6 +204,8 @@
 			children = (
 				56416BC023F20B030039B3ED /* Alamofire.framework */,
 				9B93055FA84D121BB75CAE59 /* libPods-Mastermind.a */,
+				10D443411DF60E82A66F5EB8 /* libPods-MastermindTests.a */,
+				E81A4CCC47DB66C4E27545A6 /* libPods-MastermindUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -203,6 +215,10 @@
 			children = (
 				1B83010BF8A40F1D925088BC /* Pods-Mastermind.debug.xcconfig */,
 				3CB5312045ED4319AFB393C8 /* Pods-Mastermind.release.xcconfig */,
+				BF85615547AF114392FE0E82 /* Pods-MastermindTests.debug.xcconfig */,
+				F74DB17ED45DCD79CB105E24 /* Pods-MastermindTests.release.xcconfig */,
+				1F7C3311C2A3E5E7F73956DE /* Pods-MastermindUITests.debug.xcconfig */,
+				B09CA6D02716CDFBD7E58818 /* Pods-MastermindUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -232,6 +248,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5618278223EBE385001EACE8 /* Build configuration list for PBXNativeTarget "MastermindTests" */;
 			buildPhases = (
+				3F3E42E778E34D6344D651D9 /* [CP] Check Pods Manifest.lock */,
 				5618276723EBE385001EACE8 /* Sources */,
 				5618276823EBE385001EACE8 /* Frameworks */,
 				5618276923EBE385001EACE8 /* Resources */,
@@ -250,6 +267,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5618278523EBE385001EACE8 /* Build configuration list for PBXNativeTarget "MastermindUITests" */;
 			buildPhases = (
+				EC919B63C6E00597BCBB9F73 /* [CP] Check Pods Manifest.lock */,
 				5618277223EBE385001EACE8 /* Sources */,
 				5618277323EBE385001EACE8 /* Frameworks */,
 				5618277423EBE385001EACE8 /* Resources */,
@@ -359,6 +377,50 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3F3E42E778E34D6344D651D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MastermindTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC919B63C6E00597BCBB9F73 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MastermindUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -381,7 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5618277023EBE385001EACE8 /* MastermindTests.swift in Sources */,
+				56416BC723F253640039B3ED /* MainVCTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +640,7 @@
 		};
 		5618278323EBE385001EACE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF85615547AF114392FE0E82 /* Pods-MastermindTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -599,6 +662,7 @@
 		};
 		5618278423EBE385001EACE8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F74DB17ED45DCD79CB105E24 /* Pods-MastermindTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -620,6 +684,7 @@
 		};
 		5618278623EBE385001EACE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F7C3311C2A3E5E7F73956DE /* Pods-MastermindUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -639,6 +704,7 @@
 		};
 		5618278723EBE385001EACE8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B09CA6D02716CDFBD7E58818 /* Pods-MastermindUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

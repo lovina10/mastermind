@@ -174,7 +174,7 @@ class MainVC: UIViewController {
         guessesLabel.text = "Remaining Guesses: \(remainingGuesses)"
     }
 
-    private func compareAndGiveFeedback() {
+    func compareAndGiveFeedback() {
         if guessArray[0] == numberCombo[0] && guessArray[1] == numberCombo[1] && guessArray[2] == numberCombo[2] && guessArray[3] == numberCombo[3] {
             feedbackLabel.text = "You win! You have guessed the correct number combination!"
             resetGameButton.isHidden = false

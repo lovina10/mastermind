@@ -26,9 +26,9 @@ I used stack views for ease of displaying the rows of buttons and text fields in
 #### Animation
 Label animations were added not only to give the user a more delightful visual experience, but to serve the purpose of allowing the user to see that their input has been registered by the app.
 #### Multiple Uses for Same Views
-As screen area of an iOS app is limited, I wanted to make sure that all of the necessary game components were visible and accessible, but not cluttered. As a result, my design choices were based on a minimalistic mindset, in which I did not display more items than what was necessary for the user to play the game smoothly.
+As the screen area of an iOS app is limited, I wanted to make sure that all of the necessary game components were visible and accessible, but not cluttered. As a result, my design choices were based on a minimalistic mindset in which I did not display more elements than what was necessary for the user to play the game smoothly, and certain elements, such as the feedback label, served multiple purposes.
 #### Design Pattern
 This codebase generally follows the MVC design pattern with some alterations for modularity.
 
 ## Tradeoffs 
-The biggest challenge when building the game was, given the time constraint of a week, deciding what extra features to include, if any, versus building the basic game that optimized for a smooth and intuitive user experience and making sure that the codebase for that was well-built and versatile. I ultimately chose to have a well-designed minimal viable product built on a robust codebase that I can build more features upon.
+The biggest challenge when building the game was, given the time constraint of a week, deciding what extra features to include, if any, versus building the basic game that optimized for a smooth and intuitive user experience and making sure that the codebase for that was well-built and versatile. I ultimately chose to have a well-designed minimal viable product built on a maintainable codebase that I can build more features upon.

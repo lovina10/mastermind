@@ -133,20 +133,17 @@ class MainVC: UIViewController {
         if currentTextField == nil {
             currentTextField = textField4
             currentTextField?.text = ""
-            highlightCurrentTextField()
         } else if currentTextField == textField3 && textField3.text != "" {
             currentTextField?.text = ""
-            highlightCurrentTextField()
         } else if currentTextField == textField2 && textField2.text != "" {
             currentTextField?.text = ""
-            highlightCurrentTextField()
         } else {
             currentTextField?.text = ""
             if currentTextField == textField4 && textField4.text == "" { currentTextField = textField3 }
             else if currentTextField == textField3 && textField3.text == "" { currentTextField = textField2 }
             else if currentTextField == textField2 && textField2.text == "" { currentTextField = textField1 }
-            highlightCurrentTextField()
         }
+        highlightCurrentTextField()
         checkIfSubmitEnabled()
     }
 

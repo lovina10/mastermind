@@ -15,6 +15,7 @@
                 <outlet property="fiveButton" destination="hrp-tF-9DL" id="MgQ-wC-0Vz"/>
                 <outlet property="fourButton" destination="v0b-1Q-YWk" id="22c-Qz-YaV"/>
                 <outlet property="guessesLabel" destination="q9d-v1-Gfw" id="wH8-k5-fld"/>
+                <outlet property="loadingView" destination="JtB-tr-WNk" id="y9I-bM-G1T"/>
                 <outlet property="oneButton" destination="UdV-5o-ZPj" id="JOy-Xl-wjD"/>
                 <outlet property="resetGameButton" destination="jBI-Q1-5tY" id="08p-9A-B4y"/>
                 <outlet property="sevenButton" destination="xYa-jS-9y1" id="2Ox-g2-pAH"/>
@@ -205,6 +206,10 @@
                         </button>
                     </subviews>
                 </stackView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JtB-tr-WNk" customClass="LoadingView" customModule="Mastermind" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -212,9 +217,12 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="q9d-v1-Gfw" secondAttribute="trailing" constant="20" id="1hp-PJ-gyO"/>
                 <constraint firstItem="yGe-H6-ctm" firstAttribute="top" secondItem="dcd-cb-jJC" secondAttribute="bottom" priority="999" constant="80" id="2xQ-dm-Kgl"/>
                 <constraint firstItem="dcd-cb-jJC" firstAttribute="top" secondItem="Q2D-Gs-pk4" secondAttribute="bottom" constant="41" id="9SV-cj-nOm"/>
+                <constraint firstItem="JtB-tr-WNk" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="AOr-qG-WUH"/>
                 <constraint firstItem="BRu-KN-lqy" firstAttribute="top" secondItem="q9d-v1-Gfw" secondAttribute="bottom" priority="749" constant="60" id="ENQ-8P-bNA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="JtB-tr-WNk" secondAttribute="bottom" id="ENS-pe-ur9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Q2D-Gs-pk4" secondAttribute="trailing" constant="72" id="Erc-5T-XLT"/>
                 <constraint firstItem="yGe-H6-ctm" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Fwk-iA-OlU"/>
+                <constraint firstItem="JtB-tr-WNk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jgi-bK-Kd5"/>
                 <constraint firstItem="HKC-h1-uiv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="135" id="PcY-61-YQe"/>
                 <constraint firstItem="Q2D-Gs-pk4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="BRu-KN-lqy" secondAttribute="bottom" constant="16" id="PeG-J6-pQH"/>
                 <constraint firstItem="BRu-KN-lqy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="q9d-v1-Gfw" secondAttribute="bottom" constant="16" id="RoT-jZ-UUd"/>
@@ -225,6 +233,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BRu-KN-lqy" secondAttribute="trailing" constant="16" id="ah1-MX-3dp"/>
                 <constraint firstItem="sCD-m5-hHD" firstAttribute="top" secondItem="yGe-H6-ctm" secondAttribute="bottom" constant="12" id="beM-kA-qAm"/>
                 <constraint firstItem="dcd-cb-jJC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mPP-M4-Ynh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JtB-tr-WNk" secondAttribute="trailing" id="mhg-kq-trR"/>
                 <constraint firstItem="15d-XR-yPa" firstAttribute="top" secondItem="sCD-m5-hHD" secondAttribute="bottom" constant="18" id="nuK-Be-14p"/>
                 <constraint firstItem="q9d-v1-Gfw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="pn1-Yh-jw6"/>
                 <constraint firstItem="yGe-H6-ctm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dcd-cb-jJC" secondAttribute="bottom" constant="20" id="ptD-Rl-1N7"/>

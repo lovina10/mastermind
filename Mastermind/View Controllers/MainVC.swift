@@ -41,7 +41,8 @@ class MainVC: UIViewController {
     @IBOutlet weak var backspaceButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var resetGameButton: UIButton!
-
+    @IBOutlet weak var loadingView: LoadingView!
+    
     weak var delegate: MainVCDelegate?
     
     let interactor = Interactor()
@@ -87,10 +88,12 @@ class MainVC: UIViewController {
     }
 
     @objc private func setUpNewGame() {
+        loadingView.isHidden = false
         interactor.fetchNumbers { (response) in
             guard let response = response else { return }
             self.numberCombo = response
             print(self.numberCombo)
+            self.loadingView.isHidden = true
         }
         resetGameButton.isHidden = true
         submitButton.isHidden = false

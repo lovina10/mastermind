@@ -23,8 +23,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = tabBarController
             tabBarController.addChild(mainVC)
             tabBarController.addChild(historyVC)
-            mainVC.title = "Game"
-            historyVC.title = "History"
+            let gameImage = UIImage.init(systemName: "gamecontroller", compatibleWith: .none)
+            let historyImage = UIImage.init(systemName: "doc.text.magnifyingglass", compatibleWith: .none)
+            mainVC.tabBarItem = UITabBarItem(title: "Game", image: gameImage, selectedImage: gameImage)
+            historyVC.tabBarItem = UITabBarItem(title: "History", image: historyImage, selectedImage: historyImage)
             mainVC.delegate = historyVC
             self.window = window
             window.makeKeyAndVisible()

@@ -5,7 +5,8 @@ An iOS app version of the code-breaking game known as Mastermind
 Note: This project is written in Swift and must be opened with Xcode on a macOS operating system.
 1) Clone this project onto your computer.
 2) cd into the project's directory.
-3) Once inside the project directory, run `pod install` on the command line.
+3) This project uses Cocoapods. Run `sudo gem install cocoapods` on the command line if it is not already installed on your computer. You can skip this step if Cocoapods is already installed.
+3) Inside the project directory, run `pod install` on the command line.
 4) Open Mastermind.xcworkspace, which should open the project in Xcode.
 5) Build and run the project in Xcode using an iOS simulator.
 

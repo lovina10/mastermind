@@ -7,7 +7,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingView" customModule="Mastermind" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingView" customModule="Mastermind" customModuleProvider="target">
+            <connections>
+                <outlet property="failToLoadLabel" destination="d8c-0g-cHp" id="91U-o9-JjT"/>
+                <outlet property="retryButton" destination="F9q-ly-nBL" id="9D7-12-bbY"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -20,14 +25,30 @@
                         <constraint firstAttribute="width" constant="50" id="dJV-ZR-P3j"/>
                     </constraints>
                 </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8c-0g-cHp">
+                    <rect key="frame" x="207" y="418" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9q-ly-nBL">
+                    <rect key="frame" x="175" y="438" width="64" height="30"/>
+                    <state key="normal" title="Try Again"/>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="d8c-0g-cHp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="1Bo-zP-LHA"/>
+                <constraint firstItem="F9q-ly-nBL" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="9jc-P9-acH"/>
+                <constraint firstItem="F9q-ly-nBL" firstAttribute="top" secondItem="d8c-0g-cHp" secondAttribute="bottom" constant="20" id="CY6-iD-ciy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="d8c-0g-cHp" secondAttribute="trailing" constant="16" id="O08-TV-vJV"/>
+                <constraint firstItem="d8c-0g-cHp" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Ye4-KZ-mKh"/>
                 <constraint firstItem="dEJ-wA-Ks0" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="eRo-km-fuo"/>
+                <constraint firstItem="F9q-ly-nBL" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="hzs-SG-PHU"/>
                 <constraint firstItem="dEJ-wA-Ks0" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="zML-v5-Cye"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="139" y="125"/>
+            <point key="canvasLocation" x="-301" y="212"/>
         </view>
     </objects>
 </document>

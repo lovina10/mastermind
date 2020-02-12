@@ -90,10 +90,14 @@ class MainVC: UIViewController {
     @objc private func setUpNewGame() {
         loadingView.isHidden = false
         interactor.fetchNumbers { (response) in
-            guard let response = response else { return }
-            self.numberCombo = response
-            print(self.numberCombo)
-            self.loadingView.isHidden = true
+            if let response = response {
+                self.numberCombo = response
+                print(self.numberCombo)
+                self.loadingView.isHidden = true
+            } else {
+                self.loadingView.failToLoadLabel.isHidden = false
+                self.loadingView.retryButton.isHidden = false
+            }
         }
         resetGameButton.isHidden = true
         submitButton.isHidden = false

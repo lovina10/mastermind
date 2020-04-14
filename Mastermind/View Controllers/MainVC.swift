@@ -9,13 +9,6 @@
 import UIKit
 import Alamofire
 
-enum Feedback: String {
-    case incorrect = "Your guess is incorrect. Try different numbers."
-    case correctNumber = "You guessed at least one correct number."
-    case correctLocation = "You guessed at least one correct number in a correct location."
-    case correct = "You win! You have guessed the correct combination!"
-}
-
 protocol MainVCDelegate: class {
     func mainVCDidSubmitGuess(_ mainVC: MainVC, guess: Guess)
     func mainVCDidRestartGame(_ mainVC: MainVC)
@@ -71,19 +64,45 @@ class MainVC: UIViewController {
         guard numberCombo.count == 4 && guess.guessArray.count == 4 else { return }
         let guessArray = guess.guessArray
         if guessArray[0] == numberCombo[0] && guessArray[1] == numberCombo[1] && guessArray[2] == numberCombo[2] && guessArray[3] == numberCombo[3] {
-            guess.feedback = Feedback.correct.rawValue
+            guess.feedback = "You win! You have guessed the correct combination!"
             resetGameButton.isHidden = false
             submitButton.isHidden = true
-        } else if guessArray[0] == numberCombo[0] || guessArray[1] == numberCombo[1] || guessArray[2] == numberCombo[2] || guessArray[3] == numberCombo[3] {
-            guess.feedback = Feedback.correctLocation.rawValue
         } else {
-            for number in guessArray {
-                if numberCombo.contains(number) {
-                    guess.feedback = Feedback.correctNumber.rawValue
-                    return
+            displayPartiallyCorrectFeedback(for: guess)
+        }
+    }
+
+    func displayPartiallyCorrectFeedback(for guess: Guess) {
+        var dict = [String: Int]()
+        var correctLocationCount: Int = 0
+        var incorrectLocationCount: Int = 0
+        for digit in numberCombo {
+            dict[digit, default: 0] += 1
+        }
+        for i in 0..<guessArray.count {
+            if guessArray[i] == numberCombo[i] {
+                correctLocationCount += 1
+                if let count = dict[guessArray[i]] {
+                    dict[guessArray[i]] = count - 1
                 }
             }
-            guess.feedback = Feedback.incorrect.rawValue
+        }
+        for i in 0..<guessArray.count {
+            if guessArray[i] != numberCombo[i] && numberCombo.contains(guessArray[i]) && dict[guessArray[i]] ?? 0 > 0 {
+                incorrectLocationCount += 1
+                if let count = dict[guessArray[i]] {
+                    dict[guessArray[i]] = count - 1
+                }
+            }
+        }
+        if correctLocationCount > 0, incorrectLocationCount > 0 {
+            guess.feedback = "You have guessed \(correctLocationCount) number(s) in the correct location and \(incorrectLocationCount) number(s) in a incorrect location."
+        } else if correctLocationCount > 0, incorrectLocationCount == 0 {
+            guess.feedback = "You have guessed \(correctLocationCount) number(s) in the correct location."
+        } else if correctLocationCount == 0, incorrectLocationCount > 0 {
+            guess.feedback = "You have guessed \(incorrectLocationCount) number(s) in an incorrect location."
+        } else {
+            guess.feedback = "Your guess is incorrect. Try different numbers."
         }
     }
 

@@ -7,14 +7,8 @@
 //
 
 import UIKit
-import Alamofire
 
-protocol MainVCDelegate: class {
-    func mainVCDidSubmitGuess(_ mainVC: MainVC, guess: Guess)
-    func mainVCDidRestartGame(_ mainVC: MainVC)
-}
-
-class MainVC: UIViewController {
+class MainVC: UIViewController, GameManagerDelegate {
 
     @IBOutlet weak var textField1: UITextField!
     @IBOutlet weak var textField2: UITextField!
@@ -35,18 +29,14 @@ class MainVC: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var resetGameButton: UIButton!
     @IBOutlet weak var loadingView: LoadingView!
-    
-    weak var delegate: MainVCDelegate?
-    
-    let interactor = Interactor()
-    var textFields: [UITextField] = []
-    var currentTextField: UITextField?
-    var numberCombo: [String] = []
-    var guessArray: [String] = []
-    var remainingGuesses: Int = 10
+
+    let game = GameManager()
+    private var textFields: [UITextField] = []
+    private var currentTextField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        game.mainVCDelegate = self
         view.backgroundColor = .systemYellow
         setUpButtons()
         textFields = [textField1, textField2, textField3, textField4]
@@ -57,94 +47,49 @@ class MainVC: UIViewController {
             textField.clipsToBounds = true
             textField.delegate = self
         }
-        setUpNewGame()
+        startGame()
     }
 
-    func compareAndGiveFeedback(for guess: Guess) {
-        guard numberCombo.count == 4 && guess.guessArray.count == 4 else { return }
-        let guessArray = guess.guessArray
-        if guessArray[0] == numberCombo[0] && guessArray[1] == numberCombo[1] && guessArray[2] == numberCombo[2] && guessArray[3] == numberCombo[3] {
-            guess.feedback = "You win! You have guessed the correct combination!"
-            resetGameButton.isHidden = false
-            submitButton.isHidden = true
+    func prepareForNewGame() {
+        if game.numberCombo == [] {
+            loadingView.failToLoadLabel.isHidden = false
+            loadingView.retryButton.isHidden = false
         } else {
-            displayPartiallyCorrectFeedback(for: guess)
-        }
-    }
-
-    func displayPartiallyCorrectFeedback(for guess: Guess) {
-        var dict = [String: Int]()
-        var correctLocationCount: Int = 0
-        var incorrectLocationCount: Int = 0
-        for digit in numberCombo {
-            dict[digit, default: 0] += 1
-        }
-        for i in 0..<guessArray.count {
-            if guessArray[i] == numberCombo[i] {
-                correctLocationCount += 1
-                if let count = dict[guessArray[i]] {
-                    dict[guessArray[i]] = count - 1
-                }
-            }
-        }
-        for i in 0..<guessArray.count {
-            if guessArray[i] != numberCombo[i] && numberCombo.contains(guessArray[i]) && dict[guessArray[i]] ?? 0 > 0 {
-                incorrectLocationCount += 1
-                if let count = dict[guessArray[i]] {
-                    dict[guessArray[i]] = count - 1
-                }
-            }
-        }
-        if correctLocationCount > 0, incorrectLocationCount > 0 {
-            guess.feedback = "You have guessed \(correctLocationCount) number(s) in the correct location and \(incorrectLocationCount) number(s) in a incorrect location."
-        } else if correctLocationCount > 0, incorrectLocationCount == 0 {
-            guess.feedback = "You have guessed \(correctLocationCount) number(s) in the correct location."
-        } else if correctLocationCount == 0, incorrectLocationCount > 0 {
-            guess.feedback = "You have guessed \(incorrectLocationCount) number(s) in an incorrect location."
-        } else {
-            guess.feedback = "Your guess is incorrect. Try different numbers."
-        }
-    }
-
-    @objc private func setUpNewGame() {
-        loadingView.isHidden = false
-        interactor.fetchNumbers { (response) in
-            if let response = response {
-                self.numberCombo = response
-                print(self.numberCombo)
-                self.loadingView.isHidden = true
-            } else {
-                self.loadingView.failToLoadLabel.isHidden = false
-                self.loadingView.retryButton.isHidden = false
-            }
+            loadingView.isHidden = true
         }
         resetGameButton.isHidden = true
         submitButton.isHidden = false
         clearPressed()
-        remainingGuesses = 10
-        guessesLabel.text = "Remaining Guesses: \(remainingGuesses)"
-        feedbackLabel.text = "Guess the combination from the numbers below"
-        delegate?.mainVCDidRestartGame(self)
+        guessesLabel.text = "Remaining Guesses: \(game.remainingGuesses)"
+        feedbackLabel.text = "Guess the combination from the numbers brelow"
+    }
+
+    @objc private func startGame() {
+        loadingView.isHidden = false
+        game.setNewGameData()
     }
 
     @objc private func submitPressed() {
         for textfield in textFields {
             guard let number = textfield.text else { return }
-            guessArray.append(number)
+            game.guessArray.append(number)
         }
-        guard guessArray.count == 4 && numberCombo.count == 4 else { return }
-        let guess = Guess(guessArray: guessArray)
-        compareAndGiveFeedback(for: guess)
+        guard game.guessArray.count == 4 && game.numberCombo.count == 4 else { return }
+        let guess = Guess(guessArray: game.guessArray)
+        game.compareAndGiveFeedback(for: guess)
+        if game.win {
+            resetGameButton.isHidden = false
+            submitButton.isHidden = true
+        }
         feedbackLabel.text = guess.feedback
-        delegate?.mainVCDidSubmitGuess(self, guess: guess)
-        updateRemainingGuessesCount()
-        if remainingGuesses == 0 {
+        game.process(guess)
+        guessesLabel.text = "Remaining Guesses: \(game.remainingGuesses)"
+        if game.remainingGuesses == 0 {
             presentGameOver()
         }
-        guessArray = []
         animateLabels()
     }
-
+    
     @objc private func numberPressed(_ sender: UIButton) {
         currentTextField?.text = String(sender.tag)
         if currentTextField == textField1 && textField2.text == "" { currentTextField = textField2 }
@@ -183,12 +128,6 @@ class MainVC: UIViewController {
         disableSubmitButton()
     }
 
-    private func updateRemainingGuessesCount() {
-        remainingGuesses -= 1
-        guard remainingGuesses >= 0 else { return }
-        guessesLabel.text = "Remaining Guesses: \(remainingGuesses)"
-    }
-
     private func checkIfSubmitEnabled() {
         if textField1.text == "" || textField2.text == "" || textField3.text == "" || textField4.text == "" {
             disableSubmitButton()
@@ -199,7 +138,7 @@ class MainVC: UIViewController {
 
     private func presentGameOver() {
         var combinationString = ""
-        for number in numberCombo {
+        for number in game.numberCombo {
             combinationString += number
         }
         let alert = UIAlertController(title: "GAME OVER", message: "The correct combination was \(combinationString)", preferredStyle: .alert)
@@ -207,7 +146,7 @@ class MainVC: UIViewController {
             self.revealCode()
         }
         let restartAction = UIAlertAction(title: "Start Another Round", style: .default) { (action) in
-            self.setUpNewGame()
+            self.startGame()
         }
         alert.addAction(reviewAction)
         alert.addAction(restartAction)
@@ -216,10 +155,10 @@ class MainVC: UIViewController {
 
     private func revealCode() {
         feedbackLabel.text = "The correct combination was:"
-        textField1.text = numberCombo[0]
-        textField2.text = numberCombo[1]
-        textField3.text = numberCombo[2]
-        textField4.text = numberCombo[3]
+        textField1.text = game.numberCombo[0]
+        textField2.text = game.numberCombo[1]
+        textField3.text = game.numberCombo[2]
+        textField4.text = game.numberCombo[3]
         submitButton.isHidden = true
         resetGameButton.isHidden = false
     }
@@ -259,7 +198,7 @@ class MainVC: UIViewController {
         }
         backspaceButton.addTarget(self, action: #selector(backspacePressed), for: .touchUpInside)
         clearButton.addTarget(self, action: #selector(clearPressed), for: .touchUpInside)
-        resetGameButton.addTarget(self, action: #selector(setUpNewGame), for: .touchUpInside)
+        resetGameButton.addTarget(self, action: #selector(startGame), for: .touchUpInside)
         submitButton.addTarget(self, action: #selector(submitPressed), for: .touchUpInside)
 
         clearButton.layer.cornerRadius = 8

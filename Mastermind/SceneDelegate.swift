@@ -27,7 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let historyImage = UIImage.init(systemName: "doc.text.magnifyingglass", compatibleWith: .none)
             mainVC.tabBarItem = UITabBarItem(title: "Game", image: gameImage, selectedImage: gameImage)
             historyVC.tabBarItem = UITabBarItem(title: "History", image: historyImage, selectedImage: historyImage)
-            mainVC.delegate = historyVC
+            historyVC.game = mainVC.game
+//            historyVC.game?.historyVCDelegate = historyVC
             self.window = window
             window.makeKeyAndVisible()
         }

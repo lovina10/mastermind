@@ -8,6 +8,98 @@
 
 import UIKit
 
-class GameManager: NSObject {
+protocol GameManagerDelegate: class {
+    func prepareForNewGame()
+}
 
+class GameManager {
+
+    var numberCombo: [String] = []
+    var guessArray: [String] = []
+    var guesses: [Guess] = []
+    var remainingGuesses: Int = 10
+    var win: Bool = false
+
+    weak var mainVCDelegate: GameManagerDelegate?
+    weak var historyVCDelegate: GameManagerDelegate?
+    private let interactor = Interactor()
+
+    func setNewGameData() {
+        fetchCombination()
+        win = false
+        remainingGuesses = 10
+        guesses.removeAll()
+    }
+
+    func process(_ guess: Guess) {
+        guesses.append(guess)
+        guess.guessCount = guesses.count
+        resetGuessArray()
+        updateRemainingGuessesCount()
+    }
+
+    func compareAndGiveFeedback(for guess: Guess) {
+        guard numberCombo.count == 4 && guess.guessArray.count == 4 else { return }
+        let guessArray = guess.guessArray
+        if guessArray[0] == numberCombo[0] && guessArray[1] == numberCombo[1] && guessArray[2] == numberCombo[2] && guessArray[3] == numberCombo[3] {
+            guess.feedback = "You win! You have guessed the correct combination!"
+            win = true
+        } else {
+            displayPartiallyCorrectFeedback(for: guess)
+        }
+    }
+
+    private func displayPartiallyCorrectFeedback(for guess: Guess) {
+        var dict = [String: Int]()
+        var correctLocationCount: Int = 0
+        var incorrectLocationCount: Int = 0
+        for digit in numberCombo {
+            dict[digit, default: 0] += 1
+        }
+        for i in 0..<guessArray.count {
+            if guessArray[i] == numberCombo[i] {
+                correctLocationCount += 1
+                if let count = dict[guessArray[i]] {
+                    dict[guessArray[i]] = count - 1
+                }
+            }
+        }
+        for i in 0..<guessArray.count {
+            if guessArray[i] != numberCombo[i] && numberCombo.contains(guessArray[i]) && dict[guessArray[i]] ?? 0 > 0 {
+                incorrectLocationCount += 1
+                if let count = dict[guessArray[i]] {
+                    dict[guessArray[i]] = count - 1
+                }
+            }
+        }
+        if correctLocationCount > 0, incorrectLocationCount > 0 {
+            guess.feedback = "You have \(correctLocationCount) number(s) in the correct location and \(incorrectLocationCount) number(s) in a incorrect location."
+        } else if correctLocationCount > 0, incorrectLocationCount == 0 {
+            guess.feedback = "You have \(correctLocationCount) number(s) in the correct location."
+        } else if correctLocationCount == 0, incorrectLocationCount > 0 {
+            guess.feedback = "You have \(incorrectLocationCount) number(s) in an incorrect location."
+        } else {
+            guess.feedback = "Your guess is incorrect. Try different numbers."
+        }
+    }
+
+    private func fetchCombination() {
+        interactor.fetchNumbers { (response) in
+            if let response = response {
+                self.numberCombo = response
+                print(self.numberCombo)
+                self.mainVCDelegate?.prepareForNewGame()
+                self.historyVCDelegate?.prepareForNewGame()
+            }
+        }
+    }
+
+    private func updateRemainingGuessesCount() {
+        remainingGuesses -= 1
+        guard remainingGuesses >= 0 else { return }
+    }
+
+    private func resetGuessArray() {
+        guessArray = []
+    }
 }

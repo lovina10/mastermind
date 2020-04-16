@@ -13,7 +13,7 @@ class HistoryVC: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
-    private var guesses: [Guess] = []
+    var game: GameManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,24 +32,15 @@ class HistoryVC: UIViewController {
 
 extension HistoryVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return guesses.count
+        guard let game = game else { return 0 }
+        return game.guesses.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GuessHistoryCell
-        let guess = guesses[indexPath.row]
-        cell.configure(with: guess)
+        if let guess = game?.guesses[indexPath.row] {
+            cell.configure(with: guess)
+        }
         return cell
-    }
-}
-
-extension HistoryVC: MainVCDelegate {
-    func mainVCDidSubmitGuess(_ mainVC: MainVC, guess: Guess) {
-        guesses.append(guess)
-        guess.guessCount = guesses.count
-    }
-
-    func mainVCDidRestartGame(_ mainVC: MainVC) {
-        guesses.removeAll()
     }
 }

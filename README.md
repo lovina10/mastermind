@@ -11,10 +11,11 @@ Note: This project is written in Swift and must be opened with Xcode on a macOS 
 5) Build and run the project in Xcode using an iOS simulator.
 
 ## How to Play
-Play against the computer to guess the random 4-digit code. The code consists of numbers 0 through 7. Duplicate numbers are allowed. After each guess, you will be given one of the following feedback to help you figure out the correct combination:
-1) Your guess had a correct number.
-2) Your guess had a correct number in a correct location.
-3) Your guess is incorrect (has no correct numbers).
+Play against the computer to guess the random 4-digit code. The code consists of numbers 0 through 7. Duplicate numbers are allowed. After each guess, you will be given the following feedback to help you figure out the correct combination:
+1) You have X numbers in the correct location.
+2) You have X numbers in an incorrect location.
+3) You have X numbers in the correct location and X numbers in an incorrect location.
+3) Your guess has no correct numbers.
 
 You are allowed 10 guesses before the game is over. You can see your history of guesses in the "History" tab.
 
@@ -29,7 +30,7 @@ Label animations were added not only to give the user a more delightful visual e
 #### Multiple Uses for Same Views
 As the screen area of an iOS app is limited, I wanted to make sure that all of the necessary game components were visible and accessible, but not cluttered. As a result, my design choices were based on a minimalistic mindset in which I did not display more elements than what was necessary for the user to play the game smoothly, and certain areas, such as the feedback label, served multiple purposes.
 #### Architectural Design Pattern
-This codebase generally follows the MVC design pattern with some alterations for modularity.
+The game logic was placed in the "Game Manager" to extract the business logic from the view controllers, making it easy for any future view controllers to have access to the game status. The view controllers hold responsibility for the view and presentation. Networking was placed in the Interactor for increased modularity.
 
 ## Tradeoffs 
-The biggest challenge when building the game was, given the time constraint of a week, deciding what extra features to include, if any, versus building the basic game that optimized for a smooth and intuitive user experience and making sure that the codebase for that was well-built and versatile. I ultimately chose to have a well-designed minimal viable product built on a maintainable codebase that I can build more features upon.
+The biggest challenge when building the game was deciding what extra features to include, if any, versus building the basic game that optimized for a smooth and intuitive user experience and making sure that the codebase for that was well-built and versatile. I ultimately chose to have a well-designed minimal viable product built on a maintainable codebase that I can build more features upon.

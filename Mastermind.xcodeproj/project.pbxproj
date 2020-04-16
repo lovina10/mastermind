@@ -16,12 +16,12 @@
 		5618277B23EBE385001EACE8 /* MastermindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618277A23EBE385001EACE8 /* MastermindUITests.swift */; };
 		5618278A23EBF172001EACE8 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618278823EBF172001EACE8 /* MainVC.swift */; };
 		5618278B23EBF172001EACE8 /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5618278923EBF172001EACE8 /* MainVC.xib */; };
+		561E67322448090A0089636D /* GameManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561E67312448090A0089636D /* GameManagerTest.swift */; };
 		56416BB623F0DD0D0039B3ED /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56416BB423F0DD0D0039B3ED /* HistoryVC.swift */; };
 		56416BB723F0DD0D0039B3ED /* HistoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56416BB523F0DD0D0039B3ED /* HistoryVC.xib */; };
 		56416BBA23F0F6CC0039B3ED /* GuessHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56416BB823F0F6CC0039B3ED /* GuessHistoryCell.swift */; };
 		56416BBB23F0F6CC0039B3ED /* GuessHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56416BB923F0F6CC0039B3ED /* GuessHistoryCell.xib */; };
 		56416BBD23F115010039B3ED /* Guess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56416BBC23F115010039B3ED /* Guess.swift */; };
-		56416BC723F253640039B3ED /* MainVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56416BC623F253640039B3ED /* MainVCTest.swift */; };
 		56416BCF23F3DEA50039B3ED /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56416BCE23F3DEA50039B3ED /* LoadingView.xib */; };
 		56416BD123F3DEBA0039B3ED /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56416BD023F3DEBA0039B3ED /* LoadingView.swift */; };
 		564BB0F7244624E0003053FF /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564BB0F6244624E0003053FF /* GameManager.swift */; };
@@ -66,13 +66,13 @@
 		5618277C23EBE385001EACE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5618278823EBF172001EACE8 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		5618278923EBF172001EACE8 /* MainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
+		561E67312448090A0089636D /* GameManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagerTest.swift; sourceTree = "<group>"; };
 		56416BB423F0DD0D0039B3ED /* HistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
 		56416BB523F0DD0D0039B3ED /* HistoryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryVC.xib; sourceTree = "<group>"; };
 		56416BB823F0F6CC0039B3ED /* GuessHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessHistoryCell.swift; sourceTree = "<group>"; };
 		56416BB923F0F6CC0039B3ED /* GuessHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuessHistoryCell.xib; sourceTree = "<group>"; };
 		56416BBC23F115010039B3ED /* Guess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guess.swift; sourceTree = "<group>"; };
 		56416BC023F20B030039B3ED /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		56416BC623F253640039B3ED /* MainVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCTest.swift; sourceTree = "<group>"; };
 		56416BCE23F3DEA50039B3ED /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		56416BD023F3DEBA0039B3ED /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		564BB0F6244624E0003053FF /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
@@ -154,8 +154,8 @@
 		5618276E23EBE385001EACE8 /* MastermindTests */ = {
 			isa = PBXGroup;
 			children = (
-				56416BC623F253640039B3ED /* MainVCTest.swift */,
 				5618277123EBE385001EACE8 /* Info.plist */,
+				561E67312448090A0089636D /* GameManagerTest.swift */,
 			);
 			path = MastermindTests;
 			sourceTree = "<group>";
@@ -455,7 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56416BC723F253640039B3ED /* MainVCTest.swift in Sources */,
+				561E67322448090A0089636D /* GameManagerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,6 +613,7 @@
 			baseConfigurationReference = 1B83010BF8A40F1D925088BC /* Pods-Mastermind.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Mastermind/Preview Content\"";
 				DEVELOPMENT_TEAM = A5XPAAKXC3;
@@ -622,8 +623,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lovina.Mastermind;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lovinachen.Mastermind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -634,6 +636,7 @@
 			baseConfigurationReference = 3CB5312045ED4319AFB393C8 /* Pods-Mastermind.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Mastermind/Preview Content\"";
 				DEVELOPMENT_TEAM = A5XPAAKXC3;
@@ -643,8 +646,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lovina.Mastermind;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lovinachen.Mastermind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

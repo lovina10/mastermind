@@ -77,7 +77,7 @@ class GameManager {
             }
         }
         if correctLocationCount > 0, incorrectLocationCount > 0 {
-            guess.feedback = "You have \(correctLocationCount) number(s) in the correct location and \(incorrectLocationCount) number(s) in a incorrect location."
+            guess.feedback = "You have \(correctLocationCount) number(s) in the correct location and \(incorrectLocationCount) number(s) in an incorrect location."
         } else if correctLocationCount > 0, incorrectLocationCount == 0 {
             guess.feedback = "You have \(correctLocationCount) number(s) in the correct location."
         } else if correctLocationCount == 0, incorrectLocationCount > 0 {

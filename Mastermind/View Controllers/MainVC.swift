@@ -72,17 +72,14 @@ class MainVC: UIViewController, GameManagerDelegate {
     @objc private func submitPressed() {
         for textfield in textFields {
             guard let number = textfield.text else { return }
-            game.guessArray.append(number)
+            game.currentGuess.append(number)
         }
-        guard game.guessArray.count == 4 && game.numberCombo.count == 4 else { return }
-        let guess = Guess(guessArray: game.guessArray)
-        game.compareAndGiveFeedback(for: guess)
+        game.processGuess()
         if game.win {
             resetGameButton.isHidden = false
             submitButton.isHidden = true
         }
-        feedbackLabel.text = guess.feedback
-        game.process(guess)
+        feedbackLabel.text = game.feedback
         guessesLabel.text = "Remaining Guesses: \(game.remainingGuesses)"
         if game.remainingGuesses == 0 {
             presentGameOver()

@@ -15,9 +15,10 @@ protocol GameManagerDelegate: class {
 class GameManager {
 
     var numberCombo: [String] = []
-    var guessArray: [String] = []
+    var currentGuess: [String] = []
     var guesses: [Guess] = []
     var remainingGuesses: Int = 10
+    var feedback: String = ""
     var win: Bool = false
 
     weak var mainVCDelegate: GameManagerDelegate?
@@ -31,22 +32,25 @@ class GameManager {
         guesses.removeAll()
     }
 
-    func process(_ guess: Guess) {
+    func processGuess() {
+        guard currentGuess.count == 4 && numberCombo.count == 4 else { return }
+        let guess = Guess(currentGuess)
+        compareAndGiveFeedback(for: guess)
         guesses.append(guess)
         guess.guessCount = guesses.count
         resetGuessArray()
         updateRemainingGuessesCount()
     }
 
-    func compareAndGiveFeedback(for guess: Guess) {
-        guard numberCombo.count == 4 && guess.guessArray.count == 4 else { return }
-        let guessArray = guess.guessArray
-        if guessArray[0] == numberCombo[0] && guessArray[1] == numberCombo[1] && guessArray[2] == numberCombo[2] && guessArray[3] == numberCombo[3] {
+    private func compareAndGiveFeedback(for guess: Guess) {
+        guard numberCombo.count == 4 && currentGuess.count == 4 else { return }
+        if currentGuess[0] == numberCombo[0] && currentGuess[1] == numberCombo[1] && currentGuess[2] == numberCombo[2] && currentGuess[3] == numberCombo[3] {
             guess.feedback = "You win! You have guessed the correct combination!"
             win = true
         } else {
             displayPartiallyCorrectFeedback(for: guess)
         }
+        feedback = guess.feedback
     }
 
     private func displayPartiallyCorrectFeedback(for guess: Guess) {
@@ -56,19 +60,19 @@ class GameManager {
         for digit in numberCombo {
             dict[digit, default: 0] += 1
         }
-        for i in 0..<guessArray.count {
-            if guessArray[i] == numberCombo[i] {
+        for i in 0..<currentGuess.count {
+            if currentGuess[i] == numberCombo[i] {
                 correctLocationCount += 1
-                if let count = dict[guessArray[i]] {
-                    dict[guessArray[i]] = count - 1
+                if let count = dict[currentGuess[i]] {
+                    dict[currentGuess[i]] = count - 1
                 }
             }
         }
-        for i in 0..<guessArray.count {
-            if guessArray[i] != numberCombo[i] && numberCombo.contains(guessArray[i]) && dict[guessArray[i]] ?? 0 > 0 {
+        for i in 0..<currentGuess.count {
+            if currentGuess[i] != numberCombo[i] && numberCombo.contains(currentGuess[i]) && dict[currentGuess[i]] ?? 0 > 0 {
                 incorrectLocationCount += 1
-                if let count = dict[guessArray[i]] {
-                    dict[guessArray[i]] = count - 1
+                if let count = dict[currentGuess[i]] {
+                    dict[currentGuess[i]] = count - 1
                 }
             }
         }
@@ -100,6 +104,6 @@ class GameManager {
     }
 
     private func resetGuessArray() {
-        guessArray = []
+        currentGuess = []
     }
 }

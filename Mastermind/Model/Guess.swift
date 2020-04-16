@@ -9,19 +9,15 @@
 import Foundation
 
 class Guess: NSObject {
-    var guessArray: [String]
     var guessString: String
-    var feedback: String
-    var guessCount: Int
+    var feedback: String = ""
+    var guessCount: Int = 0
 
-    init(guessArray: [String]) {
-        self.guessArray = guessArray
-        self.feedback = ""
-        self.guessCount = 0
+    init(_ guessArray: [String]) {
         var numberString = ""
         for number in guessArray {
             numberString += number
         }
-        self.guessString = numberString
+        guessString = numberString
     }
 }
